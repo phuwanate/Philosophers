@@ -6,7 +6,7 @@
 /*   By: plertsir <plertsir@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 12:06:10 by plertsir          #+#    #+#             */
-/*   Updated: 2023/09/29 19:47:12 by plertsir         ###   ########.fr       */
+/*   Updated: 2023/09/29 21:29:01 by plertsir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,8 @@ typedef struct s_philo
 	int				*live_status;
 }			t_philo;
 
-int		ft_isdigit(char *av, unsigned int nb_av);
-int		check_info(char **av);
-int		out_of_int(char *av, unsigned int nb_av);
+int		ft_isdigit(char *av);
+int		check_info(char **av,unsigned int ac);
 size_t	ft_atol(const char *str);
 void	*ft_calloc(size_t count, size_t size);
 int		go_alloc(t_info *info);

@@ -6,7 +6,7 @@
 /*   By: plertsir <plertsir@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:31:55 by plertsir          #+#    #+#             */
-/*   Updated: 2023/09/29 19:55:15 by plertsir         ###   ########.fr       */
+/*   Updated: 2023/09/29 21:13:39 by plertsir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int ac, char *av[])
 {
 	t_info	info;
 
-	if (check_info(av) == FALSE)
+	if (check_info(av, ac) == FALSE)
 		return (printf("\nERROR!\n"), 1);
 	if (init_info(&info, av, ac) == FALSE)
 	{
