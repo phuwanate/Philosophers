@@ -6,7 +6,7 @@
 /*   By: plertsir <plertsir@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 18:28:14 by plertsir          #+#    #+#             */
-/*   Updated: 2023/09/29 19:54:46 by plertsir         ###   ########.fr       */
+/*   Updated: 2023/10/03 14:34:14 by plertsir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ void	go_destroy(t_info *info)
 		pthread_mutex_destroy(&info->forks[i]);
 		i++;
 	}
+	pthread_mutex_destroy(&info->print);
 	go_dealloc(info);
 }
-

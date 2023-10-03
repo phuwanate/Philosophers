@@ -6,7 +6,7 @@
 /*   By: plertsir <plertsir@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 16:44:19 by plertsir          #+#    #+#             */
-/*   Updated: 2023/09/29 17:39:00 by plertsir         ###   ########.fr       */
+/*   Updated: 2023/10/03 17:12:31 by plertsir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,25 @@ size_t	ft_atol(const char *str)
 		str++;
 	}
 	return (result);
+}
+
+void	philo_sleep(t_philo *philo, size_t ms)
+{
+	size_t	start;
+
+	start = curr_time();
+	if (*philo->live_status == DIE)
+		return ;
+	while (curr_time() - start < ms)
+	{
+		usleep(1);
+	}
+}
+
+size_t	curr_time(void)
+{
+	struct timeval	t;
+
+	gettimeofday(&t, NULL);
+	return (((t.tv_sec * 1000) + (t.tv_usec / 1000)));
 }

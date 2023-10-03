@@ -6,22 +6,22 @@
 /*   By: plertsir <plertsir@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:40:16 by plertsir          #+#    #+#             */
-/*   Updated: 2023/09/29 21:29:50 by plertsir         ###   ########.fr       */
+/*   Updated: 2023/10/03 14:04:38 by plertsir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philo.h"
 
-int	ft_isdigit(char *av)
+int	ft_isdigit(char *arg)
 {
 	unsigned int	i;
 
 	i = -1;
-	if (av[0] == '\0')
+	if (arg[0] == '\0')
 		return (FALSE);
-	while (av[++i])
+	while (arg[++i])
 	{
-		if (!(av[i] >= '0' && av[i] <= '9'))
+		if (!(arg[i] >= '0' && arg[i] <= '9'))
 			return (FALSE);
 	}
 	return (TRUE);
@@ -46,18 +46,18 @@ static unsigned int	check_size(unsigned int size)
 	return (TRUE);
 }
 
-int	check_info(char **av, unsigned int ac)
+int	check_info(char **arg, unsigned int ac)
 {
 	unsigned int	i;
 
 	i = 1;
 	if (check_size(ac) == FALSE)
 		return (FALSE);
-	while (av[i])
+	while (arg[i])
 	{
-		if (ft_isdigit(av[i]) == FALSE)
+		if (ft_isdigit(arg[i]) == FALSE)
 		{
-			printf("Argument[%d]: \"%s\" is not digit.\n", i, av[i]);
+			printf("Argument[%d]: \"%s\" is not digit.\n", i, arg[i]);
 			return (FALSE);
 		}
 		i++;
