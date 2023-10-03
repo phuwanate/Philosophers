@@ -6,7 +6,7 @@
 /*   By: plertsir <plertsir@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:11:34 by plertsir          #+#    #+#             */
-/*   Updated: 2023/10/03 21:51:07 by plertsir         ###   ########.fr       */
+/*   Updated: 2023/10/03 23:05:59 by plertsir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,15 @@ void	*routine(void *arg)
 
 	philo = (t_philo *)arg;
 	if (philo->id % 2 == 0)
-		philo_sleep(philo, 3);
+		philo_sleep(philo, 1);
 	philo->last_eat = curr_time();
+	while (philo->nb_philo == 1 && *philo->live_status == LIVE)
+			philo_sleep(philo, philo->life_time);
 	while (*philo->live_status == LIVE)
 	{
 		go_eat(philo);
 		if (philo->count == philo->meal_count)
-			return (0);
+			break;
 		go_sleep(philo);
 		print(philo, "is thinking");
 	}

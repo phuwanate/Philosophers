@@ -6,7 +6,7 @@
 /*   By: plertsir <plertsir@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 18:36:17 by plertsir          #+#    #+#             */
-/*   Updated: 2023/10/03 18:24:05 by plertsir         ###   ########.fr       */
+/*   Updated: 2023/10/03 22:50:24 by plertsir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ static void	init_philo(t_info *info)
 	while (i < info->nb_philo)
 	{
 		info->philo[i].id = i + 1;
+		info->philo[i].nb_philo = info->nb_philo;
 		info->philo[i].start_time = info->start_time;
 		info->philo[i].life_time = info->life_time;
 		info->philo[i].eat_time = info->eat_time;

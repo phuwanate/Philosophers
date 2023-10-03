@@ -6,7 +6,7 @@
 /*   By: plertsir <plertsir@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:31:55 by plertsir          #+#    #+#             */
-/*   Updated: 2023/10/03 21:43:12 by plertsir         ###   ########.fr       */
+/*   Updated: 2023/10/03 23:00:02 by plertsir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	main(int ac, char *arg[])
 		return (1);
 	if (start_thread(&info) == FALSE)
 		return (1);
-	ft_sleep(5);
+	ft_sleep(1);
 	composing_philo(&info);
 	if (join_thread(&info) == FALSE)
 		return (1);

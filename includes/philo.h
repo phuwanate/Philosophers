@@ -6,7 +6,7 @@
 /*   By: plertsir <plertsir@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 12:06:10 by plertsir          #+#    #+#             */
-/*   Updated: 2023/10/03 21:41:35 by plertsir         ###   ########.fr       */
+/*   Updated: 2023/10/03 22:50:12 by plertsir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_philo
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*print;
 	int				id;
+	int				nb_philo;
 	size_t			start_time;
 	size_t			life_time;
 	size_t			eat_time;
