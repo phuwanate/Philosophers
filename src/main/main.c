@@ -6,7 +6,7 @@
 /*   By: plertsir <plertsir@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:31:55 by plertsir          #+#    #+#             */
-/*   Updated: 2023/10/03 17:32:35 by plertsir         ###   ########.fr       */
+/*   Updated: 2023/10/03 19:21:01 by plertsir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ void	composing_philo(t_info *info)
 	i = 0;
 	while (info->live_status == LIVE)
 	{
-		is_dead(&info->philo[i % info->nb_philo]);
+		usleep(1);
+		is_dead(&info->philo[i % info->nb_philo], info);
 		i++;
 	}
 }
@@ -71,7 +72,7 @@ int	main(int ac, char *arg[])
 		return (1);
 	if (start_thread(&info) == FALSE)
 		return (1);
-	ft_sleep(4);
+	ft_sleep(5);
 	composing_philo(&info);
 	if (join_thread(&info) == FALSE)
 		return (1);

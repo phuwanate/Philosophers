@@ -6,7 +6,7 @@
 /*   By: plertsir <plertsir@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 18:36:17 by plertsir          #+#    #+#             */
-/*   Updated: 2023/10/03 16:05:32 by plertsir         ###   ########.fr       */
+/*   Updated: 2023/10/03 18:24:05 by plertsir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,12 @@ static void	init_philo(t_info *info)
 	while (i < info->nb_philo)
 	{
 		info->philo[i].id = i + 1;
-		info->philo[i].start_time = curr_time();
+		info->philo[i].start_time = info->start_time;
 		info->philo[i].life_time = info->life_time;
 		info->philo[i].eat_time = info->eat_time;
 		info->philo[i].sleep_time = info->sleep_time;
 		info->philo[i].meal_count = info->meal_count;
+		info->philo[i].last_eat = curr_time();
 		info->philo[i].count = 0;
 		info->philo[i].live_status = &info->live_status;
 		info->philo[i].print = &info->print;
@@ -75,7 +76,7 @@ int	init_info(t_info *info, char **arg, int ac)
 	info->life_time = ft_atol(arg[2]);
 	info->eat_time = ft_atol(arg[3]);
 	info->sleep_time = ft_atol(arg[4]);
-	info->start_time = info->start_time;
+	info->start_time = curr_time();
 	info->live_status = LIVE;
 	if (ac == 6)
 		info->meal_count = ft_atol(arg[5]);
