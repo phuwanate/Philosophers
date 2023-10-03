@@ -6,7 +6,7 @@
 /*   By: plertsir <plertsir@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 18:36:17 by plertsir          #+#    #+#             */
-/*   Updated: 2023/10/03 22:50:24 by plertsir         ###   ########.fr       */
+/*   Updated: 2023/10/04 00:07:23 by plertsir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ int	init_mutex(t_info *info)
 		if (pthread_mutex_init(&info->forks[i], NULL) != 0)
 		{
 			go_destroy(info);
-			return (printf("mutex failed!\n"), FALSE);
+			return (printf("%smutex failed!\n", RED), FALSE);
 		}
 		i++;
 	}
 	if (pthread_mutex_init(&info->print, NULL) != 0)
 	{
 		go_destroy(info);
-		return (printf("mutex failed!\n"), FALSE);
+		return (printf("%smutex failed!\n", RED), FALSE);
 	}
 	return (TRUE);
 }
@@ -86,7 +86,7 @@ int	init_info(t_info *info, char **arg, int ac)
 	if (go_alloc(info) == FALSE)
 	{
 		go_dealloc(info);
-		return (printf("ERROR. Cannot initial the info struct.\n"), FALSE);
+		return (printf("%sERROR. Cannot initial the info struct.\n", RED), FALSE);
 	}
 	init_philo(info);
 	return (TRUE);

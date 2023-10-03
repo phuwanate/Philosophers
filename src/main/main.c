@@ -6,7 +6,7 @@
 /*   By: plertsir <plertsir@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:31:55 by plertsir          #+#    #+#             */
-/*   Updated: 2023/10/03 23:00:02 by plertsir         ###   ########.fr       */
+/*   Updated: 2023/10/04 00:04:34 by plertsir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	start_thread(t_info *info)
 		&info->philo[i]) != 0)
 		{
 			go_destroy(info);
-			return (printf("ERROR. Cannot create threads\n"), FALSE);
+			return (printf("%sERROR. Cannot create threads\n", RED), FALSE);
 		}
 		i++;
 	}
@@ -40,7 +40,7 @@ static int	join_thread(t_info *info)
 		if (pthread_join(info->philo[i].thd, NULL) != 0)
 		{
 			go_destroy(info);
-			return (printf("ERROR. Cannot join some thread\n"), FALSE);
+			return (printf("%sERROR. Cannot join some thread\n", RED), FALSE);
 		}
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: plertsir <plertsir@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:40:16 by plertsir          #+#    #+#             */
-/*   Updated: 2023/10/03 22:39:44 by plertsir         ###   ########.fr       */
+/*   Updated: 2023/10/04 00:05:39 by plertsir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,16 @@ static unsigned int	check_size(unsigned int size)
 {
 	if (size < 5)
 	{
-		printf("The arguments should be like....");
-		printf("\n\"[nb_of_philosophers] [time_to_die] [time_to_eat) ");
-		printf("[time_to_sleep] [nb_of_meals (optional)]\"\n");
+		printf("%sThe arguments should be like....", RED);
+		printf("%s\n\"[nb_of_philosophers] [time_to_die] [time_to_eat) ", RED);
+		printf("%s[time_to_sleep] [nb_of_meals (optional)]\"\n", RED);
 		return (FALSE);
 	}
 	else if (size > 6)
 	{
-		printf("Number of arguments should not exceed 5.\n");
-		printf("\n\"[nb_of_philosophers] [time_to_die] [time_to_eat] ");
-		printf("[time_to_sleep] [nb_of_meals (optional)]\"\n");
+		printf("%sNumber of arguments should not exceed 5.\n", RED);
+		printf("%s\n\"[nb_of_philosophers] [time_to_die] [time_to_eat] ", RED);
+		printf("%s[time_to_sleep] [nb_of_meals (optional)]\"\n", RED);
 		return (FALSE);
 	}
 	return (TRUE);
@@ -57,7 +57,7 @@ int	check_info(char **arg, unsigned int ac)
 	{
 		if (ft_isdigit(arg[i]) == FALSE)
 		{
-			printf("Argument[%d]: \"%s\" is not digit.\n", i, arg[i]);
+			printf("%sArgument[%d]: \"%s\" is not digit.\n",RED, i, arg[i]);
 			return (FALSE);
 		}
 		i++;

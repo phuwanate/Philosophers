@@ -6,7 +6,7 @@
 /*   By: plertsir <plertsir@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 12:06:10 by plertsir          #+#    #+#             */
-/*   Updated: 2023/10/03 22:50:12 by plertsir         ###   ########.fr       */
+/*   Updated: 2023/10/03 23:59:27 by plertsir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@
 # define FALSE  0
 # define LIVE	1
 # define DIE	0
+# define RED  "\x1B[31m"
+# define YEL  "\x1B[33m"
+# define GRN  "\x1B[32m"
+# define BLU  "\x1B[34m"
+# define GRY  "\x1B[97m" 
 
 # include <pthread.h>
 # include <stdio.h>
@@ -70,7 +75,7 @@ void	*routine(void *arg);
 void	philo_sleep(t_philo *philo, size_t ms);
 void	ft_sleep(size_t ms);
 size_t	curr_time(void);
-void	print(t_philo *philo, char *str);
+void	print(t_philo *philo, char *str, char *col);
 void	is_dead(t_philo *philo);
 
 #endif

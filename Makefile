@@ -5,13 +5,11 @@ CC = cc
 FLAGS = -Wall -Wextra -Werror
 
 SRC_DIR = ./src
-SUB_MAIN = $(addprefix $(SRC_DIR)/main/,main.c init_all.c)
+SUB_MAIN = $(addprefix $(SRC_DIR)/main/,main.c init_all.c allocate.c routine.c)
 SUB_ARG = $(addprefix $(SRC_DIR)/check_info/,check_general.c)
 SUB_UTILS = $(addprefix $(SRC_DIR)/utils/,utils.c utils2.c)
-SUB_MEM = $(addprefix $(SRC_DIR)/mem_mani/,allocate.c)
-SUB_ROUT = $(addprefix $(SRC_DIR)/routine/,routine.c)
 
-SRC = $(SUB_MAIN) $(SUB_ARG) $(SUB_UTILS) $(SUB_MEM) $(SUB_ROUT)
+SRC = $(SUB_MAIN) $(SUB_ARG) $(SUB_UTILS)
 
 OBJS = $(SRC:.c=.o)
 

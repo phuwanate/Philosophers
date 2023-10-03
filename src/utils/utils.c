@@ -6,7 +6,7 @@
 /*   By: plertsir <plertsir@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 16:44:19 by plertsir          #+#    #+#             */
-/*   Updated: 2023/10/03 22:45:36 by plertsir         ###   ########.fr       */
+/*   Updated: 2023/10/03 23:41:45 by plertsir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,13 @@ size_t	ft_atol(const char *str)
 void	philo_sleep(t_philo *philo, size_t ms)
 {
 	size_t	start;
-	size_t	dif_time;
 
 	start = curr_time();
-	dif_time = 0;
 	if (*philo->live_status == DIE)
 		return ;
-	while (dif_time < ms)
+	while (curr_time() - start < ms)
 	{
 		usleep(1);
-		dif_time = curr_time() - start;
 	}
 }
 
