@@ -6,7 +6,7 @@
 /*   By: plertsir <plertsir@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 14:26:27 by plertsir          #+#    #+#             */
-/*   Updated: 2023/10/03 18:49:55 by plertsir         ###   ########.fr       */
+/*   Updated: 2023/10/03 21:44:37 by plertsir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	print(t_philo *philo, char *str)
 	pthread_mutex_unlock(philo->print);
 }
 
-void	is_dead(t_philo *philo, t_info *info)
+void	is_dead(t_philo *philo)
 {
 	size_t	time_stamp;
 
@@ -34,8 +34,8 @@ void	is_dead(t_philo *philo, t_info *info)
 		if (*philo->live_status == LIVE)
 			printf("%lu		%d		died\n", time_stamp, \
 			philo->id);
-		pthread_mutex_lock(philo->print);
-		info->live_status = DIE;
+		*philo->live_status = DIE;
+		pthread_mutex_unlock(philo->print);
 	}
 }
 

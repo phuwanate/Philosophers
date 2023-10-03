@@ -6,7 +6,7 @@
 /*   By: plertsir <plertsir@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 12:06:10 by plertsir          #+#    #+#             */
-/*   Updated: 2023/10/03 18:39:50 by plertsir         ###   ########.fr       */
+/*   Updated: 2023/10/03 21:41:35 by plertsir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,6 @@ void	philo_sleep(t_philo *philo, size_t ms);
 void	ft_sleep(size_t ms);
 size_t	curr_time(void);
 void	print(t_philo *philo, char *str);
-void	is_dead(t_philo *philo, t_info *info);
+void	is_dead(t_philo *philo);
 
 #endif
