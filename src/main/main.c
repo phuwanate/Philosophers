@@ -6,7 +6,7 @@
 /*   By: plertsir <plertsir@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:31:55 by plertsir          #+#    #+#             */
-/*   Updated: 2023/10/04 12:37:29 by plertsir         ###   ########.fr       */
+/*   Updated: 2023/10/04 14:05:19 by plertsir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static int	start_thread(t_info *info)
 	i = 0;
 	while (i < info->nb_philo)
 	{
+		// if (i % 2 == 0)
+		// 	usleep(15);
 		if (pthread_create(&info->philo[i].thd, NULL, &routine, \
 		&info->philo[i]) != 0)
 		{
@@ -54,6 +56,7 @@ void	composing_philo(t_info *info)
 	i = 0;
 	while (info->live_status == LIVE)
 	{
+		// usleep(1);
 		is_dead(&info->philo[i % info->nb_philo]);
 		i++;
 	}
