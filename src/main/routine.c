@@ -6,7 +6,7 @@
 /*   By: plertsir <plertsir@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:11:34 by plertsir          #+#    #+#             */
-/*   Updated: 2023/10/04 00:02:58 by plertsir         ###   ########.fr       */
+/*   Updated: 2023/10/04 12:44:43 by plertsir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 
 void	go_eat(t_philo *philo)
 {
-	if (philo->live_status == DIE)
+	if (life_status(philo) == DIE)
 		return ;
 	pthread_mutex_lock(philo->r_fork);
 	pthread_mutex_lock(philo->l_fork);
 	print(philo, "has taken a fork", YEL);
 	print(philo, "is eating", GRN);
+	pthread_mutex_lock(philo->last_eat_lock);
 	philo->last_eat = curr_time();
-	philo->count++;
+	pthread_mutex_unlock(philo->last_eat_lock);
 	philo_sleep(philo, philo->eat_time);
 	pthread_mutex_unlock(philo->r_fork);
 	pthread_mutex_unlock(philo->l_fork);
@@ -40,14 +41,17 @@ void	*routine(void *arg)
 	philo = (t_philo *)arg;
 	if (philo->id % 2 == 0)
 		philo_sleep(philo, 1);
+	pthread_mutex_lock(philo->last_eat_lock);
 	philo->last_eat = curr_time();
-	while (philo->nb_philo == 1 && *philo->live_status == LIVE)
-			philo_sleep(philo, philo->life_time);
-	while (*philo->live_status == LIVE)
+	pthread_mutex_unlock(philo->last_eat_lock);
+	while (life_status(philo) == LIVE)
 	{
+		while (philo->nb_philo == 1 && life_status(philo) == LIVE)
+			philo_sleep(philo, philo->life_time);
 		go_eat(philo);
+		philo->count++;
 		if (philo->count == philo->meal_count)
-			break;
+			break ;
 		go_sleep(philo);
 		print(philo, "is thinking", YEL);
 	}

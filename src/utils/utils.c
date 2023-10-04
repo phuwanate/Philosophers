@@ -6,7 +6,7 @@
 /*   By: plertsir <plertsir@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 16:44:19 by plertsir          #+#    #+#             */
-/*   Updated: 2023/10/03 23:41:45 by plertsir         ###   ########.fr       */
+/*   Updated: 2023/10/04 12:24:21 by plertsir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	philo_sleep(t_philo *philo, size_t ms)
 	size_t	start;
 
 	start = curr_time();
-	if (*philo->live_status == DIE)
+	if (life_status(philo) == DIE)
 		return ;
 	while (curr_time() - start < ms)
 	{

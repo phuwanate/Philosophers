@@ -6,11 +6,26 @@
 /*   By: plertsir <plertsir@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 18:36:17 by plertsir          #+#    #+#             */
-/*   Updated: 2023/10/04 00:07:23 by plertsir         ###   ########.fr       */
+/*   Updated: 2023/10/04 12:45:18 by plertsir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philo.h"
+
+int	init_mutex2(t_info *info)
+{
+	if (pthread_mutex_init(&info->status, NULL) != 0)
+	{
+		go_destroy(info);
+		return (printf("%smutex failed!\n", RED), FALSE);
+	}
+	if (pthread_mutex_init(&info->last_eat_lock, NULL) != 0)
+	{
+		go_destroy(info);
+		return (printf("%smutex failed!\n", RED), FALSE);
+	}
+	return (TRUE);
+}
 
 int	init_mutex(t_info *info)
 {
@@ -31,6 +46,8 @@ int	init_mutex(t_info *info)
 		go_destroy(info);
 		return (printf("%smutex failed!\n", RED), FALSE);
 	}
+	if (init_mutex2(info) == FALSE)
+		return (FALSE);
 	return (TRUE);
 }
 
@@ -66,6 +83,8 @@ static void	init_philo(t_info *info)
 		info->philo[i].count = 0;
 		info->philo[i].live_status = &info->live_status;
 		info->philo[i].print = &info->print;
+		info->philo[i].status = &info->status;
+		info->philo[i].last_eat_lock = &info->last_eat_lock;
 		init_fork(info, i);
 		i++;
 	}
@@ -86,7 +105,8 @@ int	init_info(t_info *info, char **arg, int ac)
 	if (go_alloc(info) == FALSE)
 	{
 		go_dealloc(info);
-		return (printf("%sERROR. Cannot initial the info struct.\n", RED), FALSE);
+		return (printf("%sERROR. Cannot initial the info struct.\n", \
+		RED), FALSE);
 	}
 	init_philo(info);
 	return (TRUE);
