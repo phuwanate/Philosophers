@@ -6,7 +6,7 @@
 /*   By: plertsir <plertsir@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 12:06:10 by plertsir          #+#    #+#             */
-/*   Updated: 2023/10/04 12:41:54 by plertsir         ###   ########.fr       */
+/*   Updated: 2023/10/04 18:46:49 by plertsir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,10 @@
 # define FALSE  0
 # define LIVE	1
 # define DIE	0
-# define RED	"\x1B[31m"
-# define YEL	"\x1B[93m"
-# define GRN	"\x1B[32m"
-# define  BLU 	"\x1B[36m"
-
-
+# define RED  "\x1B[31m"
+# define YEL  "\x1B[33m"
+# define GRN  "\x1B[32m"
+# define BLU  "\x1B[34m"
 # define GRY  "\x1B[97m" 
 
 # include <pthread.h>
@@ -36,8 +34,8 @@ typedef struct s_info
 {
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print;
-	pthread_mutex_t	status;
-	pthread_mutex_t	last_eat_lock;
+	pthread_mutex_t time_lock;
+	pthread_mutex_t dead_lock;
 	int				nb_philo;
 	size_t			start_time;
 	size_t			life_time;
@@ -54,8 +52,8 @@ typedef struct s_philo
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*print;
-	pthread_mutex_t	*status;
-	pthread_mutex_t	*last_eat_lock;
+	pthread_mutex_t *time_lock;
+	pthread_mutex_t *dead_lock;
 	int				id;
 	int				nb_philo;
 	size_t			start_time;
@@ -83,7 +81,6 @@ void	ft_sleep(size_t ms);
 size_t	curr_time(void);
 void	print(t_philo *philo, char *str, char *col);
 void	is_dead(t_philo *philo);
-int		life_status(t_philo *philo);
-int		die_time(t_philo *philo);
+int		die_check(t_philo *philo);
 
 #endif

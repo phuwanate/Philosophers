@@ -6,47 +6,49 @@
 /*   By: plertsir <plertsir@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 14:26:27 by plertsir          #+#    #+#             */
-/*   Updated: 2023/10/04 15:26:19 by plertsir         ###   ########.fr       */
+/*   Updated: 2023/10/04 18:52:49 by plertsir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philo.h"
 
-int	life_status(t_philo *philo)
+int		die_check(t_philo *philo)
 {
-	pthread_mutex_lock(philo->status);
-	if (*philo->live_status == LIVE)
-		return (pthread_mutex_unlock(philo->status), LIVE);
-	return (pthread_mutex_unlock(philo->status), DIE);
-}
-
-size_t	timestamp(size_t start_time)
-{
-	return (curr_time() - start_time);
+		pthread_mutex_lock(philo->dead_lock);
+		if (*philo->live_status == DIE)
+			return(pthread_mutex_unlock(philo->dead_lock), DIE);
+		return(pthread_mutex_unlock(philo->dead_lock), LIVE);
 }
 
 void	print(t_philo *philo, char *str, char *col)
 {
+	size_t	timestamp;
+
+	timestamp = curr_time() - philo->start_time;
 	pthread_mutex_lock(philo->print);
-	if (life_status(philo) == LIVE)
-		printf("%s%lu		%d		%s\n", col, timestamp(philo->start_time), \
-		philo->id, str);
+	if (*philo->live_status == LIVE)
+		printf("%s%lu		%d		%s\n", col, timestamp, philo->id, str);
 	pthread_mutex_unlock(philo->print);
 }
 
 void	is_dead(t_philo *philo)
 {
-	if (die_time(philo) == DIE)
+	size_t	time_stamp;
+	size_t	curr;
+
+	time_stamp = curr_time() - philo->start_time;
+	pthread_mutex_lock(philo->time_lock);
+	curr = curr_time() - philo->last_eat;
+	pthread_mutex_unlock(philo->time_lock);
+	if (curr >= philo->life_time)
 	{
 		pthread_mutex_lock(philo->print);
-		if (life_status(philo) == LIVE)
-		{
-			printf("%s%lu		%d		died\n", RED, \
-			timestamp(philo->start_time), philo->id);
-			pthread_mutex_lock(philo->status);
-			*philo->live_status = DIE;
-			pthread_mutex_unlock(philo->status);
-		}
+		if (*philo->live_status == LIVE)
+			printf("%s%lu		%d		died\n", RED, time_stamp, \
+			philo->id);
+		pthread_mutex_lock(philo->dead_lock);
+		*philo->live_status = DIE;
+		pthread_mutex_unlock(philo->dead_lock);
 		pthread_mutex_unlock(philo->print);
 	}
 }
