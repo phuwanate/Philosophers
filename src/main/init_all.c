@@ -6,7 +6,7 @@
 /*   By: plertsir <plertsir@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 18:36:17 by plertsir          #+#    #+#             */
-/*   Updated: 2023/10/04 18:51:05 by plertsir         ###   ########.fr       */
+/*   Updated: 2023/10/04 22:13:12 by plertsir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,14 @@ static void	init_philo(t_info *info)
 
 int	init_info(t_info *info, char **arg, int ac)
 {
+	int	i;
+	
+	i = 0;
+	while(++i < ac)
+	{
+		if (ft_atol(arg[i]) == FALSE)
+			return (printf("%sThe argument[%d] exeed LONG_MAX!\n", RED, i), FALSE);
+	}
 	info->nb_philo = ft_atol(arg[1]);
 	info->life_time = ft_atol(arg[2]);
 	info->eat_time = ft_atol(arg[3]);

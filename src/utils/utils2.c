@@ -6,7 +6,7 @@
 /*   By: plertsir <plertsir@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 14:26:27 by plertsir          #+#    #+#             */
-/*   Updated: 2023/10/04 21:48:09 by plertsir         ###   ########.fr       */
+/*   Updated: 2023/10/04 21:59:31 by plertsir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	print(t_philo *philo, char *str)
 void	is_dead(t_philo *philo)
 {
 	size_t	time_stamp;
-	size_t	curr;
+	long	curr;
 
 	time_stamp = curr_time() - philo->start_time;
 	pthread_mutex_lock(philo->time_lock);

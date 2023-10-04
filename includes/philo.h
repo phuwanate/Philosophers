@@ -6,7 +6,7 @@
 /*   By: plertsir <plertsir@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 12:06:10 by plertsir          #+#    #+#             */
-/*   Updated: 2023/10/04 21:47:25 by plertsir         ###   ########.fr       */
+/*   Updated: 2023/10/04 21:59:58 by plertsir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ typedef struct s_info
 	pthread_mutex_t dead_lock;
 	int				nb_philo;
 	size_t			start_time;
-	size_t			life_time;
-	size_t			eat_time;
-	size_t			sleep_time;
+	long			life_time;
+	long			eat_time;
+	long			sleep_time;
 	long			meal_count;
 	int				live_status;
 	struct s_philo	*philo;
@@ -53,10 +53,10 @@ typedef struct s_philo
 	int				id;
 	int				nb_philo;
 	size_t			start_time;
-	size_t			life_time;
-	size_t			eat_time;
-	size_t			sleep_time;
-	size_t			last_eat;
+	long			life_time;
+	long			eat_time;
+	long			sleep_time;
+	long			last_eat;
 	long			meal_count;
 	long			count;
 	int				*live_status;
@@ -64,7 +64,7 @@ typedef struct s_philo
 
 int		ft_isdigit(char *arg);
 int		check_info(char **arg, unsigned int ac);
-size_t	ft_atol(const char *str);
+long	ft_atol(const char *str);
 void	*ft_calloc(size_t count, size_t size);
 int		go_alloc(t_info *info);
 void	go_dealloc(t_info *info);
@@ -74,8 +74,7 @@ void	go_destroy(t_info *info);
 void	*routine(void *arg);
 void	philo_sleep(t_philo *philo, size_t ms);
 void	ft_sleep(size_t ms);
-size_t	curr_time(void);
-//void	print(t_philo *philo, char *str, char *col);
+long	curr_time(void);
 void	print(t_philo *philo, char *str);
 void	is_dead(t_philo *philo);
 int		die_check(t_philo *philo);
