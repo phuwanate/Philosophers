@@ -6,7 +6,7 @@
 /*   By: plertsir <plertsir@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 12:06:10 by plertsir          #+#    #+#             */
-/*   Updated: 2023/10/04 19:54:05 by plertsir         ###   ########.fr       */
+/*   Updated: 2023/10/04 21:47:25 by plertsir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,6 @@
 # define LIVE	1
 # define DIE	0
 # define RED  "\x1B[31m"
-# define YEL  "\x1B[33m"
-# define GRN  "\x1B[32m"
-# define BLU  "\x1B[34m"
-# define GRY  "\x1B[97m" 
 
 # include <pthread.h>
 # include <stdio.h>

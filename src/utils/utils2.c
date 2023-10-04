@@ -6,7 +6,7 @@
 /*   By: plertsir <plertsir@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 14:26:27 by plertsir          #+#    #+#             */
-/*   Updated: 2023/10/04 19:53:54 by plertsir         ###   ########.fr       */
+/*   Updated: 2023/10/04 21:48:09 by plertsir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,6 @@ int		die_check(t_philo *philo)
 			return(pthread_mutex_unlock(philo->dead_lock), DIE);
 		return(pthread_mutex_unlock(philo->dead_lock), LIVE);
 }
-
-// void	print(t_philo *philo, char *str, char *col)
-// {
-// 	size_t	timestamp;
-
-// 	timestamp = curr_time() - philo->start_time;
-// 	pthread_mutex_lock(philo->print);
-// 	if (*philo->live_status == LIVE)
-// 		printf("%s%lu		%d		%s\n", col, timestamp, philo->id, str);
-// 	pthread_mutex_unlock(philo->print);
-// }
 
 void	print(t_philo *philo, char *str)
 {
