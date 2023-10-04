@@ -52,8 +52,7 @@ void	*routine(void *arg)
 
 	philo = (t_philo *)arg;
 	if (philo->id % 2 == 0)
-		usleep(10);
-		// philo_sleep(philo, 2);
+		philo_sleep(philo, 1);
 	while (philo->nb_philo == 1 && die_check(philo) == LIVE)
 			philo_sleep(philo, philo->life_time);
 	while (die_check(philo) == LIVE)
