@@ -34,7 +34,7 @@ typedef struct s_info
 	pthread_mutex_t	dead_lock;
 	pthread_mutex_t	is_full_lock;
 	int				nb_philo;
-	int				philo_count;
+	int				philo_full_count;
 	size_t			start_time;
 	long			life_time;
 	long			eat_time;
