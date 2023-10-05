@@ -106,7 +106,7 @@ int	init_info(t_info *info, char **arg, int ac)
 	info->sleep_time = ft_atol(arg[4]);
 	info->start_time = curr_time();
 	info->live_status = LIVE;
-	info->philo_count = 0;
+	info->philo_full_count = 0;
 	if (ac == 6)
 		info->meal_count = ft_atol(arg[5]);
 	else
