@@ -56,8 +56,8 @@ void	composing_philo(t_info *info)
 	{
 		usleep(1);
 		if (is_full(&info->philo[i % info->nb_philo]) == TRUE)
-			info->philo_count += 1;
-		if (info->philo_count == info->nb_philo)
+			info->philo_full_count += 1;
+		if (info->philo_full_count == info->nb_philo)
 			break ;
 		is_dead(&info->philo[i % info->nb_philo]);		
 		i++;
