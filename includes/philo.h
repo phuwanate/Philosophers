@@ -6,7 +6,7 @@
 /*   By: plertsir <plertsir@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 12:06:10 by plertsir          #+#    #+#             */
-/*   Updated: 2023/10/05 10:04:20 by plertsir         ###   ########.fr       */
+/*   Updated: 2023/10/05 18:56:47 by plertsir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ typedef struct s_info
 	pthread_mutex_t	print;
 	pthread_mutex_t	time_lock;
 	pthread_mutex_t	dead_lock;
+	pthread_mutex_t	is_full_lock;
 	int				nb_philo;
+	int				philo_count;
 	size_t			start_time;
 	long			life_time;
 	long			eat_time;
@@ -50,6 +52,7 @@ typedef struct s_philo
 	pthread_mutex_t	*print;
 	pthread_mutex_t	*time_lock;
 	pthread_mutex_t	*dead_lock;
+	pthread_mutex_t	*is_full_lock;
 	int				id;
 	int				nb_philo;
 	size_t			start_time;
@@ -79,5 +82,6 @@ void	print(t_philo *philo, char *str);
 void	is_dead(t_philo *philo);
 int		die_check(t_philo *philo);
 int		out_of_long(char **arg, int ac);
+int		is_full(t_philo *philo);
 
 #endif

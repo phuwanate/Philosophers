@@ -6,7 +6,7 @@
 /*   By: plertsir <plertsir@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 18:28:14 by plertsir          #+#    #+#             */
-/*   Updated: 2023/10/04 18:42:59 by plertsir         ###   ########.fr       */
+/*   Updated: 2023/10/05 18:34:26 by plertsir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,12 @@ void	go_destroy(t_info *info)
 	i = 0;
 	while (i < info->nb_philo)
 	{
-		pthread_mutex_destroy(&info->forks[i]);
+		if (&info->forks[i])
+			pthread_mutex_destroy(&info->forks[i]);
 		i++;
 	}
 	pthread_mutex_destroy(&info->print);
 	pthread_mutex_destroy(&info->dead_lock);
+	pthread_mutex_destroy(&info->is_full_lock);
 	go_dealloc(info);
 }

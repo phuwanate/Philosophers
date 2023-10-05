@@ -6,7 +6,7 @@
 /*   By: plertsir <plertsir@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 18:36:17 by plertsir          #+#    #+#             */
-/*   Updated: 2023/10/05 10:03:49 by plertsir         ###   ########.fr       */
+/*   Updated: 2023/10/05 18:57:51 by plertsir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ int	init_mutex2(t_info *info)
 		return (printf("%smutex failed!\n", RED), FALSE);
 	}
 	if (pthread_mutex_init(&info->time_lock, NULL) != 0)
+	{
+		go_destroy(info);
+		return (printf("%smutex failed!\n", RED), FALSE);
+	}
+	if (pthread_mutex_init(&info->is_full_lock, NULL) != 0)
 	{
 		go_destroy(info);
 		return (printf("%smutex failed!\n", RED), FALSE);
@@ -85,6 +90,7 @@ static void	init_philo(t_info *info)
 		info->philo[i].print = &info->print;
 		info->philo[i].dead_lock = &info->dead_lock;
 		info->philo[i].time_lock = &info->time_lock;
+		info->philo[i].is_full_lock = &info->is_full_lock;
 		init_fork(info, i);
 		i++;
 	}
@@ -100,6 +106,7 @@ int	init_info(t_info *info, char **arg, int ac)
 	info->sleep_time = ft_atol(arg[4]);
 	info->start_time = curr_time();
 	info->live_status = LIVE;
+	info->philo_count = 0;
 	if (ac == 6)
 		info->meal_count = ft_atol(arg[5]);
 	else

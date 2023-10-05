@@ -6,7 +6,7 @@
 /*   By: plertsir <plertsir@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:11:34 by plertsir          #+#    #+#             */
-/*   Updated: 2023/10/05 09:57:22 by plertsir         ###   ########.fr       */
+/*   Updated: 2023/10/05 18:55:48 by plertsir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ void	go_eat(t_philo *philo)
 	pthread_mutex_lock(philo->time_lock);
 	philo->last_eat = curr_time();
 	pthread_mutex_unlock(philo->time_lock);
+	pthread_mutex_lock(philo->is_full_lock);
 	philo->count++;
+	pthread_mutex_unlock(philo->is_full_lock);
 	philo_sleep(philo, philo->eat_time);
 	pthread_mutex_unlock(philo->r_fork);
 	pthread_mutex_unlock(philo->l_fork);
@@ -56,7 +58,7 @@ void	*routine(void *arg)
 	{
 		go_eat(philo);
 		if (philo->count == philo->meal_count)
-			break ;
+			break;
 		go_sleep(philo);
 		print(philo, "is thinking");
 	}
