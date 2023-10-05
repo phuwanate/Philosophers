@@ -6,7 +6,7 @@
 /*   By: plertsir <plertsir@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 16:44:19 by plertsir          #+#    #+#             */
-/*   Updated: 2023/10/04 22:06:26 by plertsir         ###   ########.fr       */
+/*   Updated: 2023/10/05 09:57:59 by plertsir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ long	ft_atol(const char *str)
 		str++;
 	while (*str >= '0' && *str <= '9')
 	{
-		if ((result * 10 > LONG_MAX) || (((result * 10) + (*str - '0')) > LONG_MAX))
+		if ((result * 10 > LONG_MAX) || (((result * 10) + (*str - '0')) \
+		> LONG_MAX))
 			return (FALSE);
 		result = result * 10 + (*str - '0');
 		str++;
@@ -71,7 +72,7 @@ void	philo_sleep(t_philo *philo, size_t ms)
 long	curr_time(void)
 {
 	struct timeval	t;
-	
+
 	gettimeofday(&t, NULL);
 	return (((t.tv_sec * 1000) + (t.tv_usec / 1000)));
 }

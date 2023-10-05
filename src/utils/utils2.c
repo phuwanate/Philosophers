@@ -6,18 +6,23 @@
 /*   By: plertsir <plertsir@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 14:26:27 by plertsir          #+#    #+#             */
-/*   Updated: 2023/10/04 21:59:31 by plertsir         ###   ########.fr       */
+/*   Updated: 2023/10/05 09:58:20 by plertsir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philo.h"
 
-int		die_check(t_philo *philo)
+int	out_of_long(char **arg, int ac)
 {
-		pthread_mutex_lock(philo->dead_lock);
-		if (*philo->live_status == DIE)
-			return(pthread_mutex_unlock(philo->dead_lock), DIE);
-		return(pthread_mutex_unlock(philo->dead_lock), LIVE);
+	int	i;
+
+	i = 0;
+	while (++i < ac)
+	{
+		if (ft_atol(arg[i]) == FALSE)
+			return (printf("%sArgument[%d] exeed LONG_MAX!\n", RED, i), FALSE);
+	}
+	return (TRUE);
 }
 
 void	print(t_philo *philo, char *str)
@@ -29,6 +34,14 @@ void	print(t_philo *philo, char *str)
 	if (*philo->live_status == LIVE)
 		printf("%lu		%d		%s\n", timestamp, philo->id, str);
 	pthread_mutex_unlock(philo->print);
+}
+
+int	die_check(t_philo *philo)
+{
+	pthread_mutex_lock(philo->dead_lock);
+	if (*philo->live_status == DIE)
+		return (pthread_mutex_unlock(philo->dead_lock), DIE);
+	return (pthread_mutex_unlock(philo->dead_lock), LIVE);
 }
 
 void	is_dead(t_philo *philo)

@@ -6,7 +6,7 @@
 /*   By: plertsir <plertsir@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:40:16 by plertsir          #+#    #+#             */
-/*   Updated: 2023/10/04 21:47:32 by plertsir         ###   ########.fr       */
+/*   Updated: 2023/10/05 09:38:53 by plertsir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	check_info(char **arg, unsigned int ac)
 	{
 		if (ft_isdigit(arg[i]) == FALSE)
 		{
-			printf("%sArgument[%d]: \"%s\" is not digit.\n",RED, i, arg[i]);
+			printf("%sArgument[%d]: \"%s\" is not digit.\n", RED, i, arg[i]);
 			return (FALSE);
 		}
 		i++;
