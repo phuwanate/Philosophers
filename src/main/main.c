@@ -47,7 +47,7 @@ static int	join_thread(t_info *info)
 	return (TRUE);
 }
 
-void	composing_philo(t_info *info)
+void	philo_composer(t_info *info)
 {
 	int		i;
 
@@ -77,7 +77,7 @@ int	main(int ac, char *arg[])
 	if (start_thread(&info) == FALSE)
 		return (1);
 	ft_sleep(1);
-	composing_philo(&info);
+	philo_composer(&info);
 	if (join_thread(&info) == FALSE)
 		return (1);
 	go_destroy(&info);
